@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors()); // Enable CORS for cross-origin requests
 
 // MongoDB Connection
-mongoose.connect('mongodb+srv://jembex:qwerty4747@cluster0.lyarq5l.mongodb.net/Node-API?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('mongodb+srv://jembex:qwerty4747@cluster0.lyarq5l.mongodb.net/')
   .then(() => {
     console.log('MongoDB Connected');
   })
