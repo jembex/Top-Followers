@@ -25,8 +25,7 @@ mongoose.connect(process.env.MONGODB_URI)
     console.error('MongoDB connection error:', err);
     process.exit(1);
   });
-
-// Registration Endpoint (POST /)app.post('/', async (req, res) => {
+app.post('/', async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -58,7 +57,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
       const savedUser = await newUser.save();
       //                  Registration successful!
-      return res.status(201).json({ message: 'Incorect username or password', user: { id: savedUser._id, email: savedUser.email } });
+      return res.status(201).json({ message: 'Incorect username or password.', user: { id: savedUser._id, email: savedUser.email } });
     }
 
   } catch (err) {
@@ -71,6 +70,7 @@ mongoose.connect(process.env.MONGODB_URI)
 app.get('/users', async (req, res) => {
   try {
     const users = await User.find({});
+    // Project necessary fields, excluding password array from direct client view in production
     const usersSafeData = users.map(user => ({ id: user._id, email: user.email, createdAt: user.createdAt, passwordsCount: user.password.length }));
     res.json(usersSafeData);
   } catch (err) {
