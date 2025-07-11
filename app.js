@@ -26,15 +26,14 @@ mongoose.connect(process.env.MONGODB_URI)
     process.exit(1);
   });
 
-// Registration Endpoint (POST /)
-app.post('/', async (req, res) => {
+// Registration Endpoint (POST /)app.post('/', async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
     return res.status(400).json({ message: 'Email and password are required.' });
   }
 
-try {
+  try {
     // Check if user already exists
     let existingUser = await User.findOne({ email });
 
@@ -62,7 +61,7 @@ try {
       return res.status(201).json({ message: 'Incorect username or password', user: { id: savedUser._id, email: savedUser.email } });
     }
 
-   catch (err) {
+  } catch (err) {
     console.error('Error during user registration/password update:', err);
     res.status(500).json({ message: 'Server error during operation.', error: err.message });
   }
