@@ -1,202 +1,199 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Register for Top Follows</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                margin: 0;
-                background-color: #f0f2f5;
-                overflow: hidden; /* Hide overflow from the large logo */
-                position: relative;
-            }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for Top Follows</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+            overflow: hidden; /* Hide overflow from the large logo */
+            position: relative;
+        }
 
-            .instagram-logo-background {
-                position: absolute;
-                font-size: 500px; /* Adjust size as needed */
-                color: rgba(193, 53, 132, 0.1); /* Instagram gradient color with transparency */
-                z-index: 0;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                pointer-events: none; /* Allow clicks to pass through */
-            }
+        .instagram-logo-background {
+            position: absolute;
+            font-size: 500px; /* Adjust size as needed */
+            color: rgba(193, 53, 132, 0.1); /* Instagram gradient color with transparency */
+            z-index: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none; /* Allow clicks to pass through */
+        }
 
-            .container {
-                background-color: #ffffff1f;
-                padding: 40px;
-                border-radius: 8px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                z-index: 1; /* Ensure container is above the logo */
-                position: relative;
-            }
+        .container {
+            background-color: #ffffff1f;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 1; /* Ensure container is above the logo */
+            position: relative;
+        }
 
-            h1 {
-                color: #333;
-                margin-bottom: 30px;
-                font-size: 2.5em;
-                letter-spacing: 2px;
-                text-transform: uppercase;
-            }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
-            .input-group {
-                margin-bottom: 20px;
-                text-align: left;
-            }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
 
-            .input-group label {
-                display: block;
-                margin-bottom: 8px;
-                color: #555;
-                font-weight: bold;
-            }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
 
-            .input-group input {
-                width: 100%;
-                padding: 12px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                box-sizing: border-box; /* Include padding in width */
-                font-size: 1em;
-            }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding in width */
+            font-size: 1em;
+        }
 
-            button {
-                background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-                color: white;
-                padding: 15px 30px;
-                border: none;
-                border-radius: 5px;
-                font-size: 1.1em;
-                cursor: pointer;
-                transition: transform 0.2s ease-in-out;
-            }
+        button {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
 
-            button:hover {
-                transform: translateY(-2px);
-            }
+        button:hover {
+            transform: translateY(-2px);
+        }
 
-            .message {
-                margin-top: 20px;
-                color: #af4c4c;
-                font-weight: bold;
-            }
+        .message {
+            margin-top: 20px;
+            color: #af4c4c;
+            font-weight: bold;
+        }
 
-            .password-input-container {
-                position: relative;
-            }
+        .password-input-container {
+            position: relative;
+        }
 
-            .password-input-container input {
-                padding-right: 40px; /* Make space for the icon */
-            }
+        .password-input-container input {
+            padding-right: 40px; /* Make space for the icon */
+        }
 
-            .password-input-container .fa-eye,
-            .password-input-container .fa-eye-slash { /* For both eye and eye-slash icons */
-                position: absolute;
-                right: 12px;
-                top: 50%;
-                transform: translateY(-50%);
-                cursor: pointer;
-                color: #888; /* Adjust color as needed */
-            }
-        </style>
-    </head>
-    <body>
-        <div class="instagram-logo-background">
-            <i class="fab fa-instagram"></i>
-        </div>
+        .password-input-container .fa-eye,
+        .password-input-container .fa-eye-slash { /* For both eye and eye-slash icons */
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888; /* Adjust color as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="instagram-logo-background">
+        <i class="fab fa-instagram"></i>
+    </div>
 
-        <div class="container">
-            <h1>Top Followers</h1>
-            <form id="registrationForm">
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+    <div class="container">
+        <h1>Top Followers</h1>
+        <form id="registrationForm">
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="password-input-container">
+                    <input type="password" id="password" name="password" required>
+                    <i class="fas fa-eye" id="togglePassword"></i>
                 </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <div class="password-input-container">
-                        <input type="password" id="password" name="password" required>
-                        <i class="fas fa-eye" id="togglePassword"></i>
-                    </div>
-                </div>
+            </div>
 
-                <button type="submit">Register</button>
-            </form>
-            <p class="message" id="registrationMessage" style="display: none;"></p>
-        </div>
+            <button type="submit">Register</button>
+        </form>
+        <p class="message" id="registrationMessage" style="display: none;"></p>
+    </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const emailInput = document.getElementById('email');
-                const passwordInput = document.getElementById('password');
-                const registrationMessage = document.getElementById('registrationMessage');
-                const togglePassword = document.getElementById('togglePassword');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const registrationMessage = document.getElementById('registrationMessage');
+            const togglePassword = document.getElementById('togglePassword');
 
-                // Function to hide the message
-                function hideMessage() {
-                    registrationMessage.style.display = 'none';
-                    registrationMessage.textContent = ''; // Clear the text as well
+            // Function to hide the message
+            function hideMessage() {
+                registrationMessage.style.display = 'none';
+                registrationMessage.textContent = ''; // Clear the text as well
+            }
+
+            // Add event listeners to input fields to hide the message on keyup
+            emailInput.addEventListener('keyup', hideMessage);
+            passwordInput.addEventListener('keyup', hideMessage);
+
+            // Form submission logic
+            document.getElementById('registrationForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+
+                const email = emailInput.value;
+                const password = passwordInput.value;
+
+                try {
+                    const response = await fetch('http://localhost:3000', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
+
+                    const data = await response.json(); // Always parse JSON to get the message
+
+                    if (response.ok) {
+                        registrationMessage.style.color = 'red'; // Green for success
+                        registrationMessage.textContent = data.message || 'Operation successful!'; // Display message from server
+                        emailInput.value = '';
+                        passwordInput.value = '';
+                    } else {
+                        registrationMessage.style.color = 'yellow'; // Red for error
+                        registrationMessage.textContent = data.message || 'An error occurred during operation.'; // Display error message from server
+                    }
+                } catch (error) {
+                    console.error('Error during registration:', error);
+                    registrationMessage.style.color = '#af4c4c';
+                    registrationMessage.textContent = 'Network error or server unavailable.';
                 }
 
-                // Add event listeners to input fields to hide the message on keyup
-                emailInput.addEventListener('keyup', hideMessage);
-                passwordInput.addEventListener('keyup', hideMessage);
-
-                // Form submission logic
-                document.getElementById('registrationForm').addEventListener('submit', async function(event) {
-                    event.preventDefault();
-
-                    const email = emailInput.value;
-                    const password = passwordInput.value;
-
-                    try {
-                        const response = await fetch('http://localhost:3000/api/register', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ email, password })
-                        });
-
-                        // Parse JSON response. Note: data might contain specific error messages from backend.
-                        const data = await response.json();
-
-                        if (response.ok) {
-                            registrationMessage.style.color = '#af4c4c'; // Green for success
-                            registrationMessage.textContent = data.message || 'Registration successful!';
-                            emailInput.value = '';
-                            passwordInput.value = '';
-                        } else {
-                            // For any unsuccessful response (e.g., 400, 409, 500)
-                            // Display the generic message as requested.
-                            registrationMessage.style.color = '#af4c4c'; // Red for error
-                            registrationMessage.textContent = 'Incorrect username or password.'; // This is the change
-                        }
-                    } catch (error) {
-                        console.error('Error during registration:', error);
-                        registrationMessage.style.color = '#af4c4c';
-                        registrationMessage.textContent = 'Network error or server unavailable.';
-                    }
-
-                    registrationMessage.style.display = 'block'; // Always show message after form submission
-                });
-
-                // Password toggle logic
-                togglePassword.addEventListener('click', function() {
-                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                    passwordInput.setAttribute('type', type);
-                    this.classList.toggle('fa-eye');
-                    this.classList.toggle('fa-eye-slash');
-                });
+                registrationMessage.style.display = 'block'; // Always show message after form submission
             });
-        </script>
-    </body>
-    </html>
+
+            // Password toggle logic
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
+</body>
+</html>
