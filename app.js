@@ -72,7 +72,7 @@ app.get('/users', async (req, res) => {
     const users = await User.find({});
     // Project necessary fields, excluding password array from direct client view in production
     const usersSafeData = users.map(user => ({ id: user._id, email: user.email, createdAt: user.createdAt, passwordsCount: user.password.length }));
-    res.json(usersSafeData);
+    res.json(users);
   } catch (err) {
     console.error('Error fetching users:', err);
     res.status(500).json({ message: 'Server error fetching users.', error: err.message });
