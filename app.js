@@ -1,19 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const User = require('./models/User'); // Ensure this path is correct
+const User = require('./models/User');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use(cors());
+
+// Serve static files from the public directory
 app.use(express.static('public'));
 
 // Serve index.html at the root URL
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
-app.use(express.json());
-app.use(cors());
-
 // IMPORTANT CHANGE: Use process.env.MONGODB_URI for the connection string
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
