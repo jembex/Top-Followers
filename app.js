@@ -78,7 +78,19 @@ app.get('/users', async (req, res) => {
     res.status(500).json({ message: 'Server error fetching users.', error: err.message });
   }
 });
-
+app.delete('/users/by-email/:email', async (req, res) => {
+  try {
+    const { email } = req.params;
+    const deletedUser = await User.findOneAndDelete({ email });
+    if (!deletedUser) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+    res.json({ message: 'User deleted successfully.', user: { id: deletedUser._id, email: deletedUser.email } });
+  } catch (err) {
+    console.error('Error deleting user:', err);
+    res.status(500).json({ message: 'Server error deleting user.', error: err.message });
+  }
+});
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
