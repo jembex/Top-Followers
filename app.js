@@ -81,6 +81,7 @@ app.get('/users', async (req, res) => {
 app.delete('/users/by-email/:email', async (req, res) => {
   try {
     const { email } = req.params;
+    console.log(req.params);
     const deletedUser = await User.findOneAndDelete({ email });
     if (!deletedUser) {
       return res.status(404).json({ message: 'User not found.' });
