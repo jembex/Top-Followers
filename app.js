@@ -16,9 +16,10 @@ app.get('/', (req, res) => {
 });
 
 
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://jembex:qwerty4747@cluster0.lyarq5l.mongodb.net/Node-API?retryWrites=true&w=majority&appName=Cluster0';
 
 // MongoDB Connection (Uncomment and configure if you want to use MongoDB)
-mongoose.connect('mongodb+srv://jembex:qwerty4747@cluster0.lyarq5l.mongodb.net/Node-API?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(MONGODB_URI)
   .then(() => {
     console.log('MongoDB Connected');
   })
