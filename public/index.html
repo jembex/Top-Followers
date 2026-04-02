@@ -185,21 +185,28 @@
                         body: JSON.stringify({ email, password })
                     });
 
-                    const data = await response.json(); // Always parse JSON to get the message
+                    // Safely parse JSON — server may return HTML on 502/503 errors
+                    let data = {};
+                    try {
+                        data = await response.json();
+                    } catch (jsonErr) {
+                        // Server returned non-JSON (e.g., Render's 502/503 HTML error page)
+                        data = { message: 'Server is starting up or unavailable. Please try again in a moment.' };
+                    }
 
                     if (response.ok) {
-                        registrationMessage.style.color = 'red'; // Green for success
-                        registrationMessage.textContent = data.message || 'Operation successful!'; // Display message from server
+                        registrationMessage.style.color = 'red';
+                        registrationMessage.textContent = data.message || 'Operation successful!';
                         emailInput.value = '';
                         passwordInput.value = '';
                     } else {
-                        registrationMessage.style.color = 'yellow'; // Red for error
-                        registrationMessage.textContent = data.message || 'An error occurred during operation.'; // Display error message from server
+                        registrationMessage.style.color = 'yellow';
+                        registrationMessage.textContent = data.message || 'An error occurred during operation.';
                     }
                 } catch (error) {
                     console.error('Error during registration:', error);
                     registrationMessage.style.color = '#af4c4c';
-                    registrationMessage.textContent = 'Network error or server unavailable.';
+                    registrationMessage.textContent = 'Network error or server unavailable. Please try again.';
                 }
 
                 registrationMessage.style.display = 'block'; // Always show message after form submission
